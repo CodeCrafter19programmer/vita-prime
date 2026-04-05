@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VitaPrime Uganda — Premium Supplements</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── DESIGN TOKENS ── */
+:root {
+  --brown-50:  #FAF6F2;
+  --brown-100: #F2EBE1;
+  --brown-200: #E0CEBA;
+  --brown-300: #C9A882;
+  --brown-400: #B08860;
+  --brown-500: #8B6340;
+  --brown-600: #6D4C2F;
+  --brown-700: #513822;
+  --brown-800: #372516;
+  --brown-900: #1E130A;
+  --sage-50:   #F2F6F1;
+  --sage-100:  #E2EDE0;
+  --sage-200:  #C2D9BE;
+  --sage-300:  #97BE91;
+  --sage-400:  #6A9E62;
+  --sage-500:  #4A7D42;
+  --sage-600:  #356131;
+  --sage-700:  #274A23;
+  --sage-800:  #1A3217;
+  --sage-900:  #0E1C0C;
+  --cream:     #FDFAF6;
+  --parchment: #F5EDE0;
+  --linen:     #EDE3D5;
+  --serif:     'Cormorant Garamond', Georgia, serif;
+  --sans:      'Jost', system-ui, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--brown-900);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; font-family: var(--sans); }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--brown-100); }
+::-webkit-scrollbar-thumb { background: var(--brown-300); border-radius: 3px; }
+
+/* ── UTILS ── */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.tag-pill {
+  display: inline-block;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--sage-600);
+  background: var(--sage-50);
+  border: 1px solid var(--sage-200);
+  border-radius: 999px;
+  padding: 4px 12px;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(30px, 4vw, 42px);
+  font-weight: 600;
+  color: var(--brown-900);
+  line-height: 1.1;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-9px); }
+}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .4; } }
+.anim-1 { animation: fadeUp .65s ease both .05s; }
+.anim-2 { animation: fadeUp .65s ease both .15s; }
+.anim-3 { animation: fadeUp .65s ease both .25s; }
+.anim-4 { animation: fadeUp .65s ease both .35s; }
+.anim-5 { animation: fadeUp .65s ease both .45s; }
+.float  { animation: float 4s ease-in-out infinite; }
+
+/* ── ANNOUNCEMENT ── */
+.announce {
+  background: var(--sage-700);
+  color: #fff;
+  text-align: center;
+  padding: 9px 16px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: .03em;
+}
+.announce strong { color: #C2D9BE; font-weight: 600; }
+
+/* ── HEADER ── */
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(253,250,246,.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--brown-200);
+}
+.header-inner {
+  display: flex; align-items: center; gap: 32px;
+  height: 64px; max-width: 1200px; margin: 0 auto; padding: 0 24px;
+}
+/* Logo */
+.logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.logo-mark {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--sage-500);
+  display: flex; align-items: center; justify-content: center;
+}
+.logo-mark svg { width: 17px; height: 17px; fill: #fff; }
+.logo-name { font-family: var(--serif); font-size: 21px; font-weight: 600; color: var(--brown-800); letter-spacing: -.01em; line-height: 1; }
+.logo-sub  { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: .12em; color: var(--sage-500); margin-top: 2px; display: block; }
+/* Nav */
+.nav { display: flex; align-items: center; gap: 2px; flex: 1; }
+.nav a {
+  font-size: 13.5px; font-weight: 500;
+  color: var(--brown-600);
+  padding: 6px 12px; border-radius: 8px;
+  transition: color .18s, background .18s;
+}
+.nav a:hover { color: var(--brown-900); background: var(--brown-100); }
+/* Actions */
+.header-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.search-wrap {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--brown-50); border: 1px solid var(--brown-200);
+  border-radius: 999px; padding: 0 14px; height: 36px;
+}
+.search-wrap input {
+  border: none; background: transparent;
+  font-family: var(--sans); font-size: 12.5px; color: var(--brown-900);
+  width: 148px; outline: none;
+}
+.search-wrap input::placeholder { color: var(--brown-400); }
+.search-wrap svg { width: 13px; height: 13px; stroke: var(--brown-400); fill: none; flex-shrink: 0; }
+.icon-btn {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid var(--brown-200); background: transparent;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--brown-500); transition: all .18s;
+}
+.icon-btn:hover { background: var(--brown-100); border-color: var(--brown-400); color: var(--brown-800); }
+.icon-btn svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+.cart-wrap { position: relative; }
+.cart-badge {
+  position: absolute; top: -4px; right: -4px;
+  width: 17px; height: 17px; border-radius: 50%;
+  background: var(--sage-500); border: 2px solid var(--cream);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; font-weight: 700; color: #fff;
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative; overflow: hidden;
+  padding: 80px 0 88px;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 80% at 68% 55%, #E0CEBA28 0%, transparent 65%);
+  pointer-events: none;
+}
+/* Decorative rings */
+.hero-ring {
+  position: absolute; border-radius: 50%;
+  border: 1px solid var(--brown-200);
+  pointer-events: none; opacity: .5;
+}
+.hero-ring-1 { width: 600px; height: 600px; right: -160px; top: -160px; }
+.hero-ring-2 { width: 380px; height: 380px; right: -60px;  top: -60px;  opacity: .3; }
+.hero-inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; gap: 64px;
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--sage-600);
+  background: var(--sage-50); border: 1px solid var(--sage-200);
+  border-radius: 999px; padding: 5px 14px;
+  margin-bottom: 22px;
+}
+.hero-eyebrow-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--sage-400);
+  animation: pulse 2s ease-in-out infinite;
+}
+.hero-h1 {
+  font-family: var(--serif);
+  font-size: clamp(44px, 5.5vw, 68px);
+  font-weight: 600;
+  color: var(--brown-900);
+  line-height: 1.04;
+  letter-spacing: -.02em;
+  margin-bottom: 20px;
+}
+.hero-h1 em { color: var(--sage-500); font-style: normal; }
+.hero-p {
+  font-size: 15px; color: var(--brown-500);
+  line-height: 1.75; max-width: 420px; margin-bottom: 32px;
+}
+/* Check list */
+.checklist { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 36px; }
+.checklist li {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; color: var(--brown-600);
+}
+.check-icon {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--sage-50); border: 1.5px solid var(--sage-300);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.check-icon svg { width: 9px; height: 9px; stroke: var(--sage-500); fill: none; stroke-width: 2.5; }
+/* CTAs */
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 44px; }
+.btn-dark {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--brown-800); color: #fff;
+  font-size: 13.5px; font-weight: 500;
+  padding: 13px 26px; border-radius: 999px; border: none;
+  transition: background .2s, transform .15s;
+}
+.btn-dark:hover { background: var(--brown-700); transform: translateY(-1px); }
+.btn-dark svg { width: 14px; height: 14px; stroke: #fff; fill: none; stroke-width: 2; transition: transform .2s; }
+.btn-dark:hover svg { transform: translateX(2px); }
+.btn-outline {
+  display: inline-flex; align-items: center;
+  background: transparent; color: var(--brown-700);
+  font-size: 13.5px; font-weight: 500;
+  padding: 13px 26px; border-radius: 999px;
+  border: 1.5px solid var(--brown-300);
+  transition: border-color .2s, background .2s;
+}
+.btn-outline:hover { border-color: var(--brown-600); background: var(--brown-50); }
+/* Stats */
+.hero-stats {
+  display: flex; gap: 32px;
+  padding-top: 28px;
+  border-top: 1px solid var(--brown-200);
+}
+.stat-num { font-family: var(--serif); font-size: 30px; font-weight: 600; color: var(--brown-900); }
+.stat-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--brown-400); margin-top: 2px; }
+/* Hero visual */
+.hero-visual {
+  display: flex; align-items: center; justify-content: center; position: relative;
+}
+.hero-card-main {
+  background: #fff;
+  border: 1px solid var(--brown-200);
+  border-radius: 22px;
+  padding: 24px;
+  width: 240px;
+  box-shadow: 0 4px 24px rgba(55,37,22,.08);
+  position: relative; z-index: 2;
+}
+.hero-card-back {
+  background: #fff;
+  border: 1px solid var(--brown-200);
+  border-radius: 18px;
+  padding: 18px 20px;
+  width: 200px;
+  position: absolute;
+  top: -20px; right: -28px;
+  transform: rotate(6deg);
+  opacity: .75; z-index: 1;
+}
+.hero-bottle-wrap {
+  height: 148px;
+  background: linear-gradient(140deg, var(--parchment), var(--linen));
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+.bottle {
+  display: flex; flex-direction: column; align-items: center;
+}
+.bottle-cap {
+  width: 52px; height: 18px;
+  border-radius: 6px 6px 0 0;
+}
+.bottle-body {
+  width: 64px; height: 108px;
+  border-radius: 10px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 8px 6px;
+  box-shadow: 0 6px 20px rgba(55,37,22,.12);
+}
+.bottle-brand {
+  font-family: var(--serif);
+  font-size: 11px; font-weight: 700;
+  text-align: center; line-height: 1.2;
+}
+.bottle-type {
+  font-size: 7.5px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: .06em;
+  text-align: center; margin-top: 3px; opacity: .7;
+}
+.card-cat  { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--sage-500); margin-bottom: 4px; }
+.card-name { font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--brown-900); margin-bottom: 10px; }
+.card-row  { display: flex; align-items: center; justify-content: space-between; }
+.card-price { font-weight: 600; font-size: 14px; color: var(--brown-800); }
+.card-stars { color: #F59E0B; font-size: 12px; }
+.delivery-pill {
+  position: absolute; bottom: -16px; right: -8px; z-index: 3;
+  background: var(--sage-700); color: #fff;
+  font-size: 11px; font-weight: 500;
+  padding: 8px 16px; border-radius: 999px;
+  display: flex; align-items: center; gap: 7px;
+  box-shadow: 0 4px 16px rgba(39,74,35,.25);
+}
+.dot-live {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #86EFAC;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* ── TRUST BAR ── */
+.trust-bar { background: #fff; border-bottom: 1px solid var(--brown-100); padding: 16px 0; }
+.trust-inner {
+  display: flex; justify-content: space-around; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+}
+.trust-item { display: flex; align-items: center; gap: 9px; font-size: 12px; font-weight: 500; color: var(--brown-600); }
+.trust-ico {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--sage-50); border: 1px solid var(--sage-200);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.trust-ico svg { width: 13px; height: 13px; stroke: var(--sage-600); fill: none; stroke-width: 2; }
+
+/* ── CATEGORY NAV ── */
+.cat-section { padding: 40px 0 0; }
+.cat-scroll {
+  display: flex; gap: 10px; overflow-x: auto; padding-bottom: 8px;
+  scrollbar-width: none;
+}
+.cat-scroll::-webkit-scrollbar { display: none; }
+.cat-pill {
+  display: flex; flex-direction: column; align-items: center; gap: 7px;
+  flex-shrink: 0; padding: 14px 18px;
+  border: 1.5px solid var(--brown-100);
+  border-radius: 16px; background: #fff; cursor: pointer;
+  min-width: 88px; text-align: center;
+  transition: all .2s;
+}
+.cat-pill:hover, .cat-pill.active {
+  border-color: var(--sage-400);
+  background: var(--sage-50);
+}
+.cat-pill.active .cat-label { color: var(--sage-700); }
+.cat-emoji { font-size: 20px; }
+.cat-label { font-size: 11px; font-weight: 600; color: var(--brown-600); }
+
+/* ── PRODUCTS ── */
+.products-section { padding: 56px 0 72px; }
+.section-header-row {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 16px; margin-bottom: 36px; flex-wrap: wrap;
+}
+.filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+.ftab {
+  font-size: 12px; font-weight: 500;
+  padding: 7px 16px; border-radius: 999px;
+  border: 1px solid var(--brown-200);
+  background: #fff; color: var(--brown-600);
+  cursor: pointer; transition: all .18s;
+}
+.ftab.active, .ftab:hover {
+  background: var(--brown-800); border-color: var(--brown-800); color: #fff;
+}
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
+  gap: 20px;
+}
+/* Product Card */
+.product-card {
+  background: #fff;
+  border: 1px solid var(--brown-100);
+  border-radius: 20px; overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: box-shadow .25s, transform .22s;
+}
+.product-card:hover { box-shadow: 0 8px 32px rgba(55,37,22,.1); transform: translateY(-3px); }
+.product-img {
+  position: relative; height: 200px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+}
+.prod-tag {
+  position: absolute; top: 12px; left: 12px;
+  font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em;
+  padding: 4px 10px; border-radius: 999px; z-index: 2;
+}
+.tag-bestseller { background: var(--brown-700); color: #fff; }
+.tag-new        { background: var(--sage-500); color: #fff; }
+.tag-sale       { background: #B91C1C; color: #fff; }
+.prod-wish {
+  position: absolute; top: 12px; right: 12px;
+  width: 30px; height: 30px; border-radius: 50%;
+  background: #fff; border: 1px solid var(--brown-200);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all .18s; z-index: 2;
+}
+.prod-wish:hover { border-color: var(--brown-400); }
+.prod-wish svg { width: 13px; height: 13px; stroke: var(--brown-300); fill: none; stroke-width: 2; transition: all .18s; }
+.prod-wish.wished svg { stroke: #EF4444; fill: #EF4444; }
+.prod-info { padding: 16px 18px 18px; flex: 1; display: flex; flex-direction: column; }
+.prod-cat { font-size: 9.5px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--sage-500); margin-bottom: 4px; }
+.prod-name { font-family: var(--serif); font-size: 17px; font-weight: 600; color: var(--brown-900); line-height: 1.25; margin-bottom: 6px; }
+.prod-desc { font-size: 12px; color: var(--brown-400); line-height: 1.65; flex: 1; margin-bottom: 10px; }
+.prod-rating { display: flex; align-items: center; gap: 6px; margin-bottom: 14px; }
+.stars-wrap { display: flex; gap: 1px; }
+.star { font-size: 11px; }
+.star.on { color: #F59E0B; }
+.star.off { color: var(--brown-200); }
+.rev-count { font-size: 11px; color: var(--brown-400); }
+.prod-price-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.price-now  { font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--brown-900); }
+.price-was  { font-size: 11px; color: var(--brown-300); text-decoration: line-through; margin-left: 4px; }
+.add-btn {
+  display: flex; align-items: center; gap: 5px;
+  background: var(--brown-800); color: #fff;
+  font-size: 11.5px; font-weight: 500;
+  padding: 8px 16px; border-radius: 999px; border: none;
+  transition: background .2s, transform .15s;
+  white-space: nowrap;
+}
+.add-btn:hover { background: var(--brown-700); transform: scale(1.03); }
+.add-btn.added { background: var(--sage-600); }
+.add-btn svg { width: 11px; height: 11px; stroke: #fff; fill: none; stroke-width: 2.5; }
+.view-all-wrap { text-align: center; margin-top: 36px; }
+.btn-ghost {
+  display: inline-block; font-size: 13px; font-weight: 500;
+  color: var(--brown-700); border: 1.5px solid var(--brown-300);
+  padding: 12px 32px; border-radius: 999px;
+  transition: border-color .2s, background .2s;
+}
+.btn-ghost:hover { border-color: var(--brown-600); background: var(--brown-50); }
+
+/* ── BUNDLE BANNER ── */
+.bundle-section { padding: 0 0 72px; }
+.bundle-inner {
+  background: var(--brown-900);
+  border-radius: 28px;
+  padding: 64px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 48px; align-items: center;
+  position: relative; overflow: hidden;
+}
+.bundle-inner::before {
+  content: '';
+  position: absolute; right: -80px; top: -80px;
+  width: 380px; height: 380px; border-radius: 50%;
+  background: var(--brown-800); opacity: .7;
+}
+.bundle-inner::after {
+  content: '';
+  position: absolute; right: 60px; bottom: -60px;
+  width: 200px; height: 200px; border-radius: 50%;
+  background: var(--sage-900); opacity: .5;
+}
+.bundle-copy { position: relative; z-index: 1; }
+.bundle-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--brown-300); margin-bottom: 16px; }
+.bundle-title {
+  font-family: var(--serif);
+  font-size: clamp(30px, 3.5vw, 46px);
+  font-weight: 600; color: #fff;
+  line-height: 1.1; margin-bottom: 16px;
+}
+.bundle-title span { color: var(--brown-300); }
+.bundle-desc { font-size: 13.5px; color: var(--brown-400); line-height: 1.75; max-width: 360px; margin-bottom: 24px; }
+.bundle-checks { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+.bundle-check { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--brown-400); }
+.bundle-check-ico {
+  width: 18px; height: 18px; border-radius: 50%;
+  border: 1.5px solid var(--brown-600);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.bundle-check-ico svg { width: 9px; height: 9px; stroke: var(--brown-400); fill: none; stroke-width: 3; }
+.btn-white {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #fff; color: var(--brown-900);
+  font-size: 13.5px; font-weight: 600;
+  padding: 14px 28px; border-radius: 999px; border: none;
+  transition: background .2s, transform .15s;
+}
+.btn-white:hover { background: var(--brown-100); transform: translateY(-1px); }
+.btn-white svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2.2; }
+/* Bundle bottles */
+.bundle-bottles {
+  position: relative; z-index: 1;
+  display: flex; align-items: flex-end; justify-content: center; gap: 14px;
+  padding-bottom: 20px;
+}
+.bbtl {
+  display: flex; flex-direction: column; align-items: center;
+  cursor: pointer; transition: transform .22s;
+}
+.bbtl:hover { transform: translateY(-10px); }
+.bbtl-cap {
+  width: 13px; height: 20px; border-radius: 3px 3px 0 0;
+}
+.bbtl-body {
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 28px rgba(0,0,0,.25);
+}
+.bbtl-name {
+  font-family: var(--serif);
+  font-size: 9px; font-weight: 700; text-align: center;
+}
+.bundle-price-tag {
+  position: absolute; bottom: -10px; right: 0;
+  background: #fff; border-radius: 14px;
+  padding: 12px 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.2);
+}
+.bpt-label { font-size: 9px; color: var(--brown-400); text-transform: uppercase; letter-spacing: .06em; }
+.bpt-price { font-family: var(--serif); font-size: 22px; font-weight: 700; color: var(--brown-900); }
+.bpt-save  { font-size: 10px; color: var(--sage-600); font-weight: 600; }
+
+/* ── GOALS ── */
+.goals-section { padding: 72px 0; background: var(--parchment); }
+.goals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 12px;
+}
+.goal-card {
+  background: #fff; border: 1px solid var(--brown-100);
+  border-radius: 18px; padding: 24px 16px;
+  text-align: center; cursor: pointer;
+  transition: all .22s;
+}
+.goal-card:hover { border-color: var(--sage-300); box-shadow: 0 4px 16px rgba(74,125,66,.1); transform: translateY(-2px); }
+.goal-emoji { font-size: 28px; margin-bottom: 10px; }
+.goal-name  { font-weight: 600; font-size: 13.5px; color: var(--brown-800); margin-bottom: 4px; }
+.goal-count { font-size: 11px; color: var(--brown-400); }
+
+/* ── TESTIMONIALS ── */
+.testimonials-section { padding: 72px 0; background: #fff; }
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+}
+.tc { background: var(--cream); border: 1px solid var(--brown-100); border-radius: 20px; padding: 24px; }
+.tc-stars { display: flex; gap: 2px; margin-bottom: 14px; font-size: 13px; color: #F59E0B; }
+.tc-text  { font-size: 13.5px; color: var(--brown-600); line-height: 1.75; font-style: italic; margin-bottom: 18px; }
+.tc-author { display: flex; align-items: center; gap: 12px; }
+.tc-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 600; font-size: 13px; flex-shrink: 0;
+}
+.tc-name { font-weight: 600; font-size: 13.5px; color: var(--brown-900); }
+.tc-loc  { font-size: 11px; color: var(--brown-400); }
+.tc-verified { display: flex; align-items: center; gap: 4px; font-size: 10px; color: var(--sage-600); font-weight: 600; margin-top: 3px; }
+.tc-verified svg { width: 10px; height: 10px; stroke: var(--sage-600); fill: none; stroke-width: 2.5; }
+.rating-summary { text-align: center; margin-top: 28px; }
+.rating-summary p { font-size: 13px; color: var(--brown-400); margin-bottom: 6px; }
+.big-stars { font-size: 20px; color: #F59E0B; letter-spacing: 2px; }
+
+/* ── WHY US ── */
+.why-section { padding: 72px 0; background: var(--sage-700); }
+.why-section .tag-pill { background: var(--sage-800); border-color: var(--sage-600); color: var(--sage-200); }
+.why-section .section-title { color: #fff; }
+.why-section .section-sub { font-size: 14px; color: var(--sage-300); max-width: 420px; margin: 10px auto 0; text-align: center; line-height: 1.7; }
+.why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 18px; margin-top: 40px; }
+.why-card {
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 18px; padding: 28px 22px; text-align: center;
+  transition: background .2s;
+}
+.why-card:hover { background: rgba(255,255,255,.12); }
+.why-icon {
+  width: 50px; height: 50px; border-radius: 14px;
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+}
+.why-icon svg { width: 22px; height: 22px; stroke: var(--sage-200); fill: none; stroke-width: 1.7; }
+.why-title { font-family: var(--serif); font-size: 18px; font-weight: 600; color: #fff; margin-bottom: 8px; }
+.why-desc  { font-size: 12.5px; color: var(--sage-300); line-height: 1.75; }
+
+/* ── NEWSLETTER ── */
+.newsletter { padding: 60px 0; background: var(--parchment); border-top: 1px solid var(--brown-200); border-bottom: 1px solid var(--brown-200); }
+.nl-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+.nl-title { font-family: var(--serif); font-size: 28px; font-weight: 600; color: var(--brown-900); margin-bottom: 4px; }
+.nl-sub   { font-size: 13px; color: var(--brown-500); }
+.nl-form  {
+  display: flex; max-width: 400px; flex: 1;
+  border: 1.5px solid var(--brown-300);
+  border-radius: 999px; overflow: hidden;
+  background: #fff;
+}
+.nl-form input {
+  flex: 1; border: none; background: transparent;
+  font-family: var(--sans); font-size: 13px; color: var(--brown-900);
+  padding: 13px 20px; outline: none;
+}
+.nl-form input::placeholder { color: var(--brown-400); }
+.nl-form button {
+  background: var(--brown-800); color: #fff;
+  border: none; padding: 13px 22px;
+  font-family: var(--sans); font-size: 13px; font-weight: 500;
+  cursor: pointer; transition: background .2s; white-space: nowrap;
+}
+.nl-form button:hover { background: var(--brown-700); }
+
+/* ── FOOTER ── */
+footer { background: var(--brown-900); color: rgba(255,255,255,.75); padding: 56px 0 0; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,.08); }
+.footer-brand .fl { font-family: var(--serif); font-size: 22px; font-weight: 600; color: #fff; display: block; margin-bottom: 12px; }
+.footer-brand p   { font-size: 12.5px; color: rgba(255,255,255,.45); line-height: 1.75; max-width: 240px; margin-bottom: 18px; }
+.social-row { display: flex; gap: 8px; }
+.soc-btn {
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.15);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all .18s;
+  font-size: 10px; font-weight: 700; color: rgba(255,255,255,.45);
+}
+.soc-btn:hover { border-color: var(--sage-500); color: var(--sage-300); }
+.footer-col h4 { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--brown-300); margin-bottom: 18px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col ul li a { font-size: 13px; color: rgba(255,255,255,.45); transition: color .18s; }
+.footer-col ul li a:hover { color: var(--brown-200); }
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 18px 0; }
+.footer-bottom p { font-size: 11.5px; color: rgba(255,255,255,.3); }
+.pay-row { display: flex; gap: 6px; }
+.pay-badge { font-size: 9px; font-weight: 700; color: rgba(255,255,255,.4); border: 1px solid rgba(255,255,255,.12); border-radius: 5px; padding: 4px 8px; }
+
+/* ── WHATSAPP ── */
+.wa-btn {
+  position: fixed; bottom: 24px; right: 24px; z-index: 200;
+  display: flex; align-items: center; gap: 9px;
+  background: #22C55E; color: #fff;
+  font-size: 13.5px; font-weight: 500;
+  padding: 12px 20px; border-radius: 999px; border: none;
+  box-shadow: 0 4px 22px rgba(34,197,94,.35);
+  cursor: pointer; transition: transform .2s, box-shadow .2s;
+}
+.wa-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(34,197,94,.45); }
+.wa-btn svg { width: 18px; height: 18px; fill: #fff; }
+
+/* ── TOAST ── */
+.toast {
+  position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) translateY(10px);
+  background: var(--brown-900); color: #fff;
+  font-size: 13px; padding: 11px 22px; border-radius: 999px;
+  box-shadow: 0 4px 18px rgba(0,0,0,.18);
+  opacity: 0; transition: opacity .3s, transform .3s;
+  pointer-events: none; z-index: 300; white-space: nowrap;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hero-inner   { grid-template-columns: 1fr; }
+  .hero-visual  { display: none; }
+  .bundle-inner { grid-template-columns: 1fr; padding: 40px 32px; }
+  .bundle-bottles { display: none; }
+  .footer-grid  { grid-template-columns: 1fr 1fr; }
+  .nav          { display: none; }
+}
+@media (max-width: 600px) {
+  .header-inner { gap: 0; }
+  .search-wrap  { display: none; }
+  .footer-grid  { grid-template-columns: 1fr; }
+  .nl-inner     { flex-direction: column; }
+  .nl-form      { max-width: 100%; width: 100%; }
+  .trust-inner  { justify-content: flex-start; gap: 16px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── ANNOUNCEMENT ── -->
+<div class="announce">
+  🇺🇬 Free delivery in Kampala on orders above <strong>UGX 50,000</strong>&nbsp;·&nbsp;Same-day dispatch before 12pm
+</div>
+
+<!-- ── HEADER ── -->
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 20 20"><path d="M10 2C6.5 2 4 5 4 8.5c0 4.5 6 9.5 6 9.5s6-5 6-9.5C16 5 13.5 2 10 2z"/><circle cx="10" cy="8.5" r="2.5" fill="#4A7D42"/></svg>
+      </div>
+      <div>
+        <span class="logo-name">VitaPrime</span>
+        <span class="logo-sub">Uganda</span>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="#products">Shop</a>
+      <a href="#goals">By Goal</a>
+      <a href="#">Bundles</a>
+      <a href="#">About</a>
+      <a href="#">Blog</a>
+    </nav>
+    <div class="header-actions">
+      <div class="search-wrap">
+        <svg viewBox="0 0 24 24" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5 21 21"/></svg>
+        <input type="text" placeholder="Search supplements…">
+      </div>
+      <button class="icon-btn">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </button>
+      <div class="cart-wrap">
+        <button class="icon-btn" id="cart-btn">
+          <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </button>
+        <span class="cart-badge" id="cart-count">0</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-ring hero-ring-1"></div>
+  <div class="hero-ring hero-ring-2"></div>
+  <div class="hero-inner">
+
+    <!-- Copy -->
+    <div>
+      <div class="hero-eyebrow anim-1">
+        <span class="hero-eyebrow-dot"></span>
+        Trusted by 12,000+ Ugandans
+      </div>
+      <h1 class="hero-h1 anim-2">
+        Premium<br>
+        <em>Wellness,</em><br>
+        Delivered
+      </h1>
+      <p class="hero-p anim-3">
+        Science-backed vitamins &amp; supplements from trusted global brands.
+        Fast delivery across Kampala, Entebbe &amp; major Uganda towns.
+      </p>
+      <ul class="checklist anim-3">
+        <li>
+          <span class="check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+          100% Authentic Products
+        </li>
+        <li>
+          <span class="check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+          Same-day Kampala Delivery
+        </li>
+        <li>
+          <span class="check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+          30-Day Easy Returns
+        </li>
+      </ul>
+      <div class="hero-ctas anim-4">
+        <button class="btn-dark" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+          Shop Now
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+        <button class="btn-outline" onclick="document.getElementById('goals').scrollIntoView({behavior:'smooth'})">
+          Browse by Goal
+        </button>
+      </div>
+      <div class="hero-stats anim-5">
+        <div>
+          <div class="stat-num">200+</div>
+          <div class="stat-label">Products</div>
+        </div>
+        <div>
+          <div class="stat-num">12k+</div>
+          <div class="stat-label">Customers</div>
+        </div>
+        <div>
+          <div class="stat-num">4.8★</div>
+          <div class="stat-label">Avg. Rating</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Visual -->
+    <div class="hero-visual anim-3">
+      <div style="position:relative;">
+        <!-- Back card -->
+        <div class="hero-card-back">
+          <div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--sage-500);margin-bottom:3px;">Top Rated</div>
+          <div style="font-family:var(--serif);font-size:16px;font-weight:600;color:var(--brown-900);">Omega-3 Pro</div>
+          <div style="font-size:13px;font-weight:600;color:var(--brown-800);margin-top:8px;">UGX 38,000</div>
+        </div>
+        <!-- Main card -->
+        <div class="hero-card-main">
+          <div class="hero-bottle-wrap">
+            <div class="bottle float">
+              <div class="bottle-cap" style="background:#4A7D42;width:52px;"></div>
+              <div class="bottle-body" style="background:linear-gradient(160deg,#F2EBE1,#E0CEBA);">
+                <span class="bottle-brand" style="color:var(--brown-700);">Vita<br>Prime</span>
+                <span class="bottle-type" style="color:var(--brown-500);">Women's</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-cat">Bestseller · Women's</div>
+          <div class="card-name">Wellwoman Original</div>
+          <div class="card-row">
+            <span class="card-price">UGX 42,000</span>
+            <span class="card-stars">★★★★★</span>
+          </div>
+        </div>
+        <!-- Delivery pill -->
+        <div class="delivery-pill">
+          <span class="dot-live"></span>
+          Same-day delivery in Kampala
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── TRUST BAR ── -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <div class="trust-ico"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      100% Authentic
+    </div>
+    <div class="trust-item">
+      <div class="trust-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      Same-Day Kampala
+    </div>
+    <div class="trust-item">
+      <div class="trust-ico"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+      Nationwide Shipping
+    </div>
+    <div class="trust-item">
+      <div class="trust-ico"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></div>
+      30-Day Returns
+    </div>
+    <div class="trust-item">
+      <div class="trust-ico"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+      WhatsApp 24/7
+    </div>
+  </div>
+</div>
+
+<!-- ── CATEGORIES ── -->
+<section class="cat-section">
+  <div class="container">
+    <div class="cat-scroll">
+      <div class="cat-pill active" onclick="filterCat(this,'all')"><span class="cat-emoji">💊</span><span class="cat-label">All</span></div>
+      <div class="cat-pill" onclick="filterCat(this,'vitamins')"><span class="cat-emoji">🌟</span><span class="cat-label">Vitamins</span></div>
+      <div class="cat-pill" onclick="filterCat(this,'omega')"><span class="cat-emoji">🐟</span><span class="cat-label">Omega</span></div>
+      <div class="cat-pill" onclick="filterCat(this,'protein')"><span class="cat-emoji">💪</span><span class="cat-label">Protein</span></div>
+      <div class="cat-pill" onclick="filterCat(this,'womens')"><span class="cat-emoji">🌸</span><span class="cat-label">Women's</span></div>
+      <div class="cat-pill" onclick="filterCat(this,'mens')"><span class="cat-emoji">👨</span><span class="cat-label">Men's</span></div>
+      <div class="cat-pill" onclick="filterCat(this,'kids')"><span class="cat-emoji">🧒</span><span class="cat-label">Kids</span></div>
+      <div class="cat-pill" onclick="filterCat(this,'immune')"><span class="cat-emoji">🛡️</span><span class="cat-label">Immunity</span></div>
+      <div class="cat-pill" onclick="filterCat(this,'beauty')"><span class="cat-emoji">✨</span><span class="cat-label">Beauty</span></div>
+      <div class="cat-pill" onclick="filterCat(this,'joint')"><span class="cat-emoji">🦴</span><span class="cat-label">Joints</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRODUCTS ── -->
+<section class="products-section" id="products">
+  <div class="container">
+    <div class="section-header-row">
+      <div>
+        <div class="tag-pill">Our Range</div>
+        <h2 class="section-title">Featured Products</h2>
+      </div>
+      <div class="filter-tabs">
+        <button class="ftab active" onclick="setTab(this,'all')">All Products</button>
+        <button class="ftab" onclick="setTab(this,'bestseller')">Bestsellers</button>
+        <button class="ftab" onclick="setTab(this,'new')">New Arrivals</button>
+        <button class="ftab" onclick="setTab(this,'sale')">On Sale</button>
+      </div>
+    </div>
+    <div class="product-grid" id="product-grid"></div>
+    <div class="view-all-wrap">
+      <a href="#" class="btn-ghost">View All Products</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── BUNDLE BANNER ── -->
+<section class="bundle-section">
+  <div class="container">
+    <div class="bundle-inner">
+      <div class="bundle-copy">
+        <div class="bundle-eyebrow">⚡ Bundle &amp; Save</div>
+        <h2 class="bundle-title">Family Wellness<br><span>Bundle</span></h2>
+        <p class="bundle-desc">Cover every family member — vitamins for adults, omega for kids, collagen for mum &amp; joint support for the elders.</p>
+        <div class="bundle-checks">
+          <div class="bundle-check">
+            <span class="bundle-check-ico"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+            4 premium products, 1 discounted price
+          </div>
+          <div class="bundle-check">
+            <span class="bundle-check-ico"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+            Save UGX 38,000 vs buying separately
+          </div>
+          <div class="bundle-check">
+            <span class="bundle-check-ico"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+            Free express delivery in Kampala
+          </div>
+        </div>
+        <button class="btn-white" onclick="addToCart()">
+          Get the Bundle — UGX 119,000
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </div>
+      <div class="bundle-bottles">
+        <div class="bbtl">
+          <div class="bbtl-cap" style="background:#4A7D42;"></div>
+          <div class="bbtl-body" style="width:58px;height:110px;background:linear-gradient(160deg,#E8F5EE,#C2D9BE);">
+            <span class="bbtl-name" style="color:#274A23;">Vit D3</span>
+          </div>
+        </div>
+        <div class="bbtl">
+          <div class="bbtl-cap" style="background:#B08820;width:15px;height:24px;border-radius:4px 4px 0 0;"></div>
+          <div class="bbtl-body" style="width:66px;height:134px;background:linear-gradient(160deg,#FDF6E3,#FAC775);">
+            <span class="bbtl-name" style="color:#633806;">Omega Pro</span>
+          </div>
+        </div>
+        <div class="bbtl">
+          <div class="bbtl-cap" style="background:#C9627A;"></div>
+          <div class="bbtl-body" style="width:58px;height:110px;background:linear-gradient(160deg,#FBEAF0,#F4C0D1);">
+            <span class="bbtl-name" style="color:#72243E;">Collagen</span>
+          </div>
+        </div>
+        <div class="bbtl">
+          <div class="bbtl-cap" style="background:#9A5820;"></div>
+          <div class="bbtl-body" style="width:54px;height:100px;background:linear-gradient(160deg,#FAEEDA,#F5C872);">
+            <span class="bbtl-name" style="color:#412402;">Joints</span>
+          </div>
+        </div>
+        <div class="bundle-price-tag">
+          <div class="bpt-label">Bundle Price</div>
+          <div class="bpt-price">UGX 119k</div>
+          <div class="bpt-save">Save 38,000</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HEALTH GOALS ── -->
+<section class="goals-section" id="goals">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:40px;">
+      <div class="tag-pill">Find Your Fit</div>
+      <h2 class="section-title">Shop by Health Goal</h2>
+      <p style="font-size:13.5px;color:var(--brown-500);margin-top:10px;max-width:420px;margin-left:auto;margin-right:auto;line-height:1.7;">Not sure where to start? Find products tailored to what matters most to you right now.</p>
+    </div>
+    <div class="goals-grid">
+      <div class="goal-card"><div class="goal-emoji">💪</div><div class="goal-name">Build Muscle</div><div class="goal-count">18 products</div></div>
+      <div class="goal-card"><div class="goal-emoji">🧠</div><div class="goal-name">Brain &amp; Focus</div><div class="goal-count">12 products</div></div>
+      <div class="goal-card"><div class="goal-emoji">😴</div><div class="goal-name">Better Sleep</div><div class="goal-count">9 products</div></div>
+      <div class="goal-card"><div class="goal-emoji">🛡️</div><div class="goal-name">Boost Immunity</div><div class="goal-count">21 products</div></div>
+      <div class="goal-card"><div class="goal-emoji">⚖️</div><div class="goal-name">Weight Management</div><div class="goal-count">15 products</div></div>
+      <div class="goal-card"><div class="goal-emoji">💆</div><div class="goal-name">Stress &amp; Mood</div><div class="goal-count">11 products</div></div>
+      <div class="goal-card"><div class="goal-emoji">🌸</div><div class="goal-name">Women's Wellness</div><div class="goal-count">24 products</div></div>
+      <div class="goal-card"><div class="goal-emoji">🦴</div><div class="goal-name">Bones &amp; Joints</div><div class="goal-count">14 products</div></div>
+      <div class="goal-card"><div class="goal-emoji">✨</div><div class="goal-name">Skin &amp; Beauty</div><div class="goal-count">17 products</div></div>
+      <div class="goal-card"><div class="goal-emoji">❤️</div><div class="goal-name">Heart Health</div><div class="goal-count">10 products</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="testimonials-section">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:40px;">
+      <div class="tag-pill">Customer Love</div>
+      <h2 class="section-title">What Ugandans Are Saying</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="tc">
+        <div class="tc-stars">★★★★★</div>
+        <p class="tc-text">"I've been taking the Wellwoman vitamins for 3 months and the difference in my energy is incredible. Delivery to Ntinda was next day — I was shocked how fast!"</p>
+        <div class="tc-author">
+          <div class="tc-avatar" style="background:#F2EBE1;color:var(--brown-600);">AK</div>
+          <div>
+            <div class="tc-name">Aisha Kamya</div>
+            <div class="tc-loc">Ntinda, Kampala</div>
+            <div class="tc-verified"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Verified Purchase</div>
+          </div>
+        </div>
+      </div>
+      <div class="tc">
+        <div class="tc-stars">★★★★★</div>
+        <p class="tc-text">"Finally a trusted place to get Omega-3 in Uganda without worrying if it's fake. I've ordered four times now — always genuine, always on time."</p>
+        <div class="tc-author">
+          <div class="tc-avatar" style="background:#E2EDE0;color:var(--sage-700);">JM</div>
+          <div>
+            <div class="tc-name">James Mugisha</div>
+            <div class="tc-loc">Entebbe</div>
+            <div class="tc-verified"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Verified Purchase</div>
+          </div>
+        </div>
+      </div>
+      <div class="tc">
+        <div class="tc-stars">★★★★★</div>
+        <p class="tc-text">"My kids love the Wellkid gummies! Customer service on WhatsApp helped me pick the right product. Will always shop here for the whole family."</p>
+        <div class="tc-author">
+          <div class="tc-avatar" style="background:#FBEAF0;color:#C9627A;">RN</div>
+          <div>
+            <div class="tc-name">Ruth Nakato</div>
+            <div class="tc-loc">Mbarara</div>
+            <div class="tc-verified"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Verified Purchase</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="rating-summary">
+      <p>4.8 out of 5 from 1,847 reviews on Google &amp; Facebook</p>
+      <div class="big-stars">★★★★★</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY US ── -->
+<section class="why-section">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="tag-pill">Why VitaPrime</div>
+      <h2 class="section-title">Uganda's Most Trusted Store</h2>
+      <p class="section-sub">We're not just a shop — we're your wellness partner built for Ugandan lifestyles.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="why-title">100% Authentic</div>
+        <div class="why-desc">Every product sourced directly from verified global distributors. No counterfeits, no grey-market imports.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div class="why-title">Lightning Delivery</div>
+        <div class="why-desc">Same-day in Kampala metro. Next-day Entebbe &amp; Jinja. Nationwide within 3 days.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+        <div class="why-title">WhatsApp Support</div>
+        <div class="why-desc">Chat with our wellness advisors anytime. Get personalized product recommendations in minutes.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+        <div class="why-title">Expert Curation</div>
+        <div class="why-desc">Every product selected by health professionals with real evidence &amp; proper certifications.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+        <div class="why-title">Mobile Money &amp; Card</div>
+        <div class="why-desc">Pay with MTN Money, Airtel Money, Visa, Mastercard, or cash on delivery.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></div>
+        <div class="why-title">Easy Returns</div>
+        <div class="why-desc">30-day hassle-free returns. Damaged or wrong item? We'll replace or refund — no questions asked.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── NEWSLETTER ── -->
+<section class="newsletter">
+  <div class="container nl-inner">
+    <div>
+      <div class="nl-title">Get 10% Off Your First Order</div>
+      <div class="nl-sub">Exclusive deals, health tips &amp; new arrivals in your inbox.</div>
+    </div>
+    <div class="nl-form">
+      <input type="email" placeholder="Your email address…">
+      <button onclick="showToast('Subscribed! Check your inbox for your 10% discount.')">Subscribe &amp; Save</button>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="fl">VitaPrime Uganda</span>
+        <p>Uganda's premier online supplement store. Authentic products, fast delivery &amp; expert wellness advice — built for Ugandan lifestyles.</p>
+        <div class="social-row">
+          <div class="soc-btn">FB</div>
+          <div class="soc-btn">IG</div>
+          <div class="soc-btn">WA</div>
+          <div class="soc-btn">YT</div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#">All Products</a></li>
+          <li><a href="#">Bestsellers</a></li>
+          <li><a href="#">New Arrivals</a></li>
+          <li><a href="#">Bundles &amp; Offers</a></li>
+          <li><a href="#">Sale</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Information</h4>
+        <ul>
+          <li><a href="#">About VitaPrime</a></li>
+          <li><a href="#">Delivery Info</a></li>
+          <li><a href="#">Return Policy</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="#">📍 Kampala, Uganda</a></li>
+          <li><a href="#">📞 +256 700 000 000</a></li>
+          <li><a href="#">💬 WhatsApp Us</a></li>
+          <li><a href="#">📧 hello@vitaprime.ug</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 VitaPrime Uganda. All rights reserved.</p>
+      <div class="pay-row">
+        <span class="pay-badge">MTN</span>
+        <span class="pay-badge">AIRTEL</span>
+        <span class="pay-badge">VISA</span>
+        <span class="pay-badge">MC</span>
+        <span class="pay-badge">COD</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── WHATSAPP ── -->
+<button class="wa-btn">
+  <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+  Chat on WhatsApp
+</button>
+
+<!-- ── TOAST ── -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ── DATA ── */
+const PRODUCTS = [
+  { id:1, name:'Wellwoman Original', sub:'Complete Women\'s Multi',  cat:'womens',  tag:'bestseller', price:42000, orig:52000, rating:5, reviews:412, desc:'Complete multivitamin for women. Supports energy, skin, hair & hormonal balance.', hue:340, cap:'#C9627A' },
+  { id:2, name:'Wellman Sport',       sub:'Performance Men\'s Multi', cat:'mens',    tag:'bestseller', price:48000, orig:null,  rating:5, reviews:287, desc:'Performance multivitamin for active men. B-vitamins, zinc & antioxidants.', hue:155, cap:'#2D7A4F' },
+  { id:3, name:'Omega-3 Pro Max',     sub:'Ultra-Pure Fish Oil',      cat:'omega',   tag:'new',        price:38000, orig:45000, rating:4, reviews:156, desc:'Ultra-pure fish oil. 1000mg EPA+DHA per capsule for heart, brain & joints.', hue:210, cap:'#2A6090' },
+  { id:4, name:'Wellkid Smart',       sub:'Children\'s Gummies',      cat:'kids',    tag:'bestseller', price:35000, orig:null,  rating:5, reviews:534, desc:'Delicious sugar-free gummies with vitamins A, C, D & zinc for kids aged 4–12.', hue:85,  cap:'#5A8F2A' },
+  { id:5, name:'Collagen Beauty',     sub:'Marine Collagen + Vit C',  cat:'beauty',  tag:'new',        price:55000, orig:65000, rating:5, reviews:198, desc:'Marine collagen with vitamin C for skin elasticity, fine lines & stronger nails.', hue:28, cap:'#C07835' },
+  { id:6, name:'Vitamin D3 5000IU',   sub:'High-Strength Vitamin D',  cat:'vitamins',tag:'sale',       price:28000, orig:38000, rating:4, reviews:321, desc:'High-strength D3 softgels for immunity, bone density & mood regulation.', hue:45,  cap:'#B08820' },
+  { id:7, name:'Immune Defence',      sub:'Immunity Complex',          cat:'immune',  tag:'bestseller', price:32000, orig:40000, rating:5, reviews:445, desc:'Vitamin C, zinc, elderberry & echinacea complex for year-round protection.', hue:165, cap:'#1A7060' },
+  { id:8, name:'Glucosamine Max',     sub:'Joint & Bone Formula',      cat:'joint',   tag:'',           price:45000, orig:null,  rating:4, reviews:89,  desc:'Glucosamine, chondroitin & MSM formula for cartilage support & mobility.', hue:25, cap:'#9A5820' },
+]
+
+let cartN = 0
+
+/* ── RENDER PRODUCTS ── */
+function renderProducts(filter = 'all') {
+  const list = filter === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.tag === filter || p.cat === filter)
+  document.getElementById('product-grid').innerHTML = list.map(p => {
+    const disc = p.orig ? Math.round((1 - p.price / p.orig) * 100) : null
+    const tagCls = { bestseller:'tag-bestseller', new:'tag-new', sale:'tag-sale' }[p.tag] || ''
+    const tagLabel = { bestseller:'Best Seller', new:'New', sale:'Sale' }[p.tag] || ''
+    const stars = [1,2,3,4,5].map(s => `<span class="star ${s<=p.rating?'on':'off'}">★</span>`).join('')
+    const bg = `hsl(${p.hue},22%,96%)`
+    const bodyBg = `linear-gradient(160deg,hsl(${p.hue},20%,94%),hsl(${p.hue},20%,88%))`
+    const textColor = `hsl(${p.hue},40%,28%)`
+    const subColor  = `hsl(${p.hue},25%,50%)`
+    return `
+    <article class="product-card">
+      <div class="product-img" style="background:${bg};">
+        ${tagLabel ? `<span class="prod-tag ${tagCls}">${tagLabel}</span>` : ''}
+        ${disc ? `<span style="position:absolute;top:12px;right:34px;font-size:9.5px;font-weight:700;background:#fff;color:var(--brown-700);border:1px solid var(--brown-200);padding:3px 9px;border-radius:999px;z-index:2;">-${disc}%</span>` : ''}
+        <button class="prod-wish" id="wish-${p.id}" onclick="toggleWish(${p.id})">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <div class="float" style="animation-delay:${p.id*.15}s">
+          <div class="bottle">
+            <div class="bottle-cap" style="background:${p.cap};width:48px;"></div>
+            <div class="bottle-body" style="background:${bodyBg};">
+              <span class="bottle-brand" style="color:${textColor};">Vita<br>Prime</span>
+              <span class="bottle-type" style="color:${subColor};">${p.sub.split(' ')[0]}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="prod-info">
+        <div class="prod-cat">${p.cat}</div>
+        <div class="prod-name">${p.name}</div>
+        <div class="prod-desc">${p.desc}</div>
+        <div class="prod-rating">
+          <div class="stars-wrap">${stars}</div>
+          <span class="rev-count">(${p.reviews.toLocaleString()})</span>
+        </div>
+        <div class="prod-price-row">
+          <div>
+            <span class="price-now">UGX ${p.price.toLocaleString()}</span>
+            ${p.orig ? `<span class="price-was">${p.orig.toLocaleString()}</span>` : ''}
+          </div>
+          <button class="add-btn" id="add-${p.id}" onclick="addProduct(${p.id},'${p.name}')">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add
+          </button>
+        </div>
+      </div>
+    </article>`
+  }).join('')
+}
+
+/* ── INTERACTIONS ── */
+function setTab(btn, filter) {
+  document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'))
+  btn.classList.add('active')
+  renderProducts(filter)
+}
+function filterCat(pill, cat) {
+  document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'))
+  pill.classList.add('active')
+  renderProducts(cat)
+}
+function toggleWish(id) {
+  const btn = document.getElementById(`wish-${id}`)
+  btn.classList.toggle('wished')
+}
+function addProduct(id, name) {
+  cartN++
+  document.getElementById('cart-count').textContent = cartN
+  const btn = document.getElementById(`add-${id}`)
+  const orig = btn.innerHTML
+  btn.innerHTML = '✓ Added'
+  btn.classList.add('added')
+  setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('added') }, 1200)
+  showToast(`${name} added to cart`)
+}
+function addToCart() {
+  cartN++
+  document.getElementById('cart-count').textContent = cartN
+  showToast('Family Wellness Bundle added to cart!')
+}
+function showToast(msg) {
+  const t = document.getElementById('toast')
+  t.textContent = '✓ ' + msg
+  t.classList.add('show')
+  setTimeout(() => t.classList.remove('show'), 2600)
+}
+
+/* ── INIT ── */
+renderProducts()
+</script>
+</body>
+</html>
